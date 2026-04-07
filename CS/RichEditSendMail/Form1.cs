@@ -22,10 +22,11 @@ namespace RichEditSendMail {
         public Form1() {
             InitializeComponent();
 
-            richEdit.LoadDocument("Hello.docx");
+            richEdit.LoadDocument("AvisMail.docx");
         }
 
-        private void btnSend_Click(object sender, EventArgs e) {
+        private void btnSend_Click(object sender, EventArgs e)
+        {
             if ((edtTo.Text.Trim() == "") || (edtSubject.Text.Trim() == "") || (edtSmtp.Text.Trim() == ""))
             {
                 MessageBox.Show("Fill in required fields");
@@ -34,21 +35,40 @@ namespace RichEditSendMail {
 
             try
             {
-                MailMessage mailMessage = new MailMessage("XtraRichEdit@devexpress.com", edtTo.Text);
+                MailMessage mailMessage = new MailMessage("stephanenana.sn@gmail.com", edtTo.Text);
                 mailMessage.Subject = edtSubject.Text;
+
+                // ----------------------
+                // Platzhalter ersetzen
+                // ----------------------
+             
+                string docText = richEdit.Text;
+                docText = docText.Replace("{KundeName}", "Haas");
+                docText = docText.Replace("{Artikel}", "Gartenhaus / Sauna / Carport / Gewächshaus / Pool / Holzartikel");
+                docText = docText.Replace("{Datum}", "05.04.2026");
+                docText = docText.Replace("{Zeitfenster}", "08:00 – 12:00 Uhr");
+                docText = docText.Replace("{RückmeldungBis}", "morgen 08:00 Uhr");
+                docText = docText.Replace("{Telefon}", "0123-456789");
+                docText = docText.Replace("{TelefonFirma}", "05492-808-115");
+                docText = docText.Replace("{Fax}", "05492-808-100");
+                docText = docText.Replace("{Web}", "www.schockemoehle.de");
+
+                // Text zurück ins RichEditControl
+                richEdit.Document.Replace(richEdit.Document.Range, docText);
+                // ----------------------
 
                 RichEditMailMessageExporter exporter = new RichEditMailMessageExporter(richEdit, mailMessage);
                 exporter.Export();
 
-                SmtpClient mailSender = new SmtpClient(edtSmtp.Text);
-                //specify your login/password to log on to the SMTP server, if required
-                //mailSender.Credentials = new NetworkCredential("login", "password");
-                mailSender.Send(mailMessage);
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                client.EnableSsl = true;
+                client.Credentials = new NetworkCredential("stephanenana.sn@gmail.com", "lbtj kppl gegy zsfv");
+                client.Send(mailMessage);
                 MessageBox.Show("Message sent", "RichEditSendMail", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception exc) {
+            catch (Exception exc)
+            {
                 MessageBox.Show(exc.Message);
-            
             }
         }
 
