@@ -28,7 +28,7 @@ namespace RichEditSendMail {
             this.btnStrike = new DevExpress.XtraEditors.SimpleButton();
             this.cboFont = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cboSize = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.colorFont = new DevExpress.XtraEditors.ColorPickEdit();
+            this.btnFontColor = new DevExpress.XtraEditors.SimpleButton();
             this.btnAlignLeft = new DevExpress.XtraEditors.SimpleButton();
             this.btnAlignCenter = new DevExpress.XtraEditors.SimpleButton();
             this.btnAlignRight = new DevExpress.XtraEditors.SimpleButton();
@@ -69,7 +69,6 @@ namespace RichEditSendMail {
             this.toolbarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboFont.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboSize.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorFont.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupAttachments)).BeginInit();
             this.groupAttachments.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -106,7 +105,7 @@ namespace RichEditSendMail {
             this.toolbarPanel.Controls.Add(this.btnStrike);
             this.toolbarPanel.Controls.Add(this.cboFont);
             this.toolbarPanel.Controls.Add(this.cboSize);
-            this.toolbarPanel.Controls.Add(this.colorFont);
+            this.toolbarPanel.Controls.Add(this.btnFontColor);
             this.toolbarPanel.Controls.Add(this.btnAlignLeft);
             this.toolbarPanel.Controls.Add(this.btnAlignCenter);
             this.toolbarPanel.Controls.Add(this.btnAlignRight);
@@ -168,48 +167,42 @@ namespace RichEditSendMail {
             this.btnStrike.Click += new System.EventHandler(this.btnStrike_Click);
 
             // -- Font name + size --
-            this.cboFont.Location = new System.Drawing.Point(158, 11);
+            this.cboFont.Location = new System.Drawing.Point(158, 9);
             this.cboFont.Name = "cboFont";
             this.cboFont.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.cboFont.Properties.Appearance.Options.UseFont = true;
+            this.cboFont.Properties.AutoHeight = false;
             this.cboFont.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.cboFont.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
                 new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboFont.Properties.NullValuePrompt = "Schriftart";
-            this.cboFont.Size = new System.Drawing.Size(130, 26);
+            this.cboFont.Size = new System.Drawing.Size(130, 30);
             this.cboFont.TabIndex = 4;
             this.cboFont.SelectedIndexChanged += new System.EventHandler(this.cboFont_SelectedIndexChanged);
 
-            this.cboSize.Location = new System.Drawing.Point(294, 11);
+            this.cboSize.Location = new System.Drawing.Point(294, 9);
             this.cboSize.Name = "cboSize";
             this.cboSize.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.cboSize.Properties.Appearance.Options.UseFont = true;
+            this.cboSize.Properties.AutoHeight = false;
             this.cboSize.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.cboSize.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
                 new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboSize.Properties.NullValuePrompt = "Größe";
-            this.cboSize.Size = new System.Drawing.Size(50, 26);
+            this.cboSize.Size = new System.Drawing.Size(64, 30);
             this.cboSize.TabIndex = 5;
             this.cboSize.SelectedIndexChanged += new System.EventHandler(this.cboSize_SelectedIndexChanged);
 
             // -- Color --
-            this.colorFont.EditValue = System.Drawing.Color.Red;
-            this.colorFont.Location = new System.Drawing.Point(371, 9);
-            this.colorFont.Name = "colorFont";
-            this.colorFont.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.colorFont.Properties.Appearance.Options.UseFont = true;
-            this.colorFont.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.colorFont.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-                new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.colorFont.Properties.ShowWebColors = false;
-            this.colorFont.Properties.ShowSystemColors = false;
-            this.colorFont.Properties.ShowCustomColors = true;
-            this.colorFont.Properties.ShowAutomaticButton = false;
-            this.colorFont.Properties.ShowMoreColorsButton = false;
-            this.colorFont.Size = new System.Drawing.Size(60, 30);
-            this.colorFont.TabIndex = 6;
-            this.colorFont.ToolTip = "Schriftfarbe";
-            this.colorFont.EditValueChanged += new System.EventHandler(this.colorFont_EditValueChanged);
+            this.btnFontColor.AllowFocus = false;
+            this.btnFontColor.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnFontColor.Appearance.Options.UseFont = true;
+            this.btnFontColor.Location = new System.Drawing.Point(371, 9);
+            this.btnFontColor.Name = "btnFontColor";
+            this.btnFontColor.Size = new System.Drawing.Size(32, 30);
+            this.btnFontColor.TabIndex = 6;
+            this.btnFontColor.ToolTip = "Schriftfarbe";
+            this.btnFontColor.Click += new System.EventHandler(this.btnFontColor_Click);
 
             // -- Alignment --
             this.btnAlignLeft.AllowFocus = false;
@@ -324,7 +317,6 @@ namespace RichEditSendMail {
             this.groupAttachments.Size = new System.Drawing.Size(320, 800);
             this.groupAttachments.TabIndex = 2;
             this.groupAttachments.Text = "Anhänge";
-            this.groupAttachments.Visible = false;
 
             // Vertikale Trennlinie zwischen Editor und Anhänge-Sidebar
             this.sepBelowAttachments.BackColor = System.Drawing.Color.FromArgb(225, 225, 230);
@@ -333,7 +325,6 @@ namespace RichEditSendMail {
             this.sepBelowAttachments.Name = "sepBelowAttachments";
             this.sepBelowAttachments.Size = new System.Drawing.Size(1, 800);
             this.sepBelowAttachments.TabIndex = 98;
-            this.sepBelowAttachments.Visible = false;
 
             this.attachmentsFlow.AutoScroll = true;
             this.attachmentsFlow.BackColor = System.Drawing.Color.Transparent;
@@ -480,18 +471,18 @@ namespace RichEditSendMail {
             this.smtpFooter.Controls.Add(this.edtSmtpPassword);
             this.smtpFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.smtpFooter.Name = "smtpFooter";
-            this.smtpFooter.Size = new System.Drawing.Size(1200, 48);
+            this.smtpFooter.Size = new System.Drawing.Size(1200, 64);
             this.smtpFooter.TabIndex = 200;
 
             this.lblSmtpServer.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblSmtpServer.Appearance.Options.UseFont = true;
-            this.lblSmtpServer.Location = new System.Drawing.Point(20, 17);
+            this.lblSmtpServer.Location = new System.Drawing.Point(20, 25);
             this.lblSmtpServer.Name = "lblSmtpServer";
             this.lblSmtpServer.Size = new System.Drawing.Size(80, 15);
             this.lblSmtpServer.TabIndex = 0;
             this.lblSmtpServer.Text = "SMTP-Server:";
 
-            this.edtSmtpServer.Location = new System.Drawing.Point(110, 13);
+            this.edtSmtpServer.Location = new System.Drawing.Point(110, 21);
             this.edtSmtpServer.Name = "edtSmtpServer";
             this.edtSmtpServer.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.edtSmtpServer.Properties.Appearance.Options.UseFont = true;
@@ -501,13 +492,13 @@ namespace RichEditSendMail {
 
             this.lblSmtpPort.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblSmtpPort.Appearance.Options.UseFont = true;
-            this.lblSmtpPort.Location = new System.Drawing.Point(380, 17);
+            this.lblSmtpPort.Location = new System.Drawing.Point(380, 25);
             this.lblSmtpPort.Name = "lblSmtpPort";
             this.lblSmtpPort.Size = new System.Drawing.Size(30, 15);
             this.lblSmtpPort.TabIndex = 0;
             this.lblSmtpPort.Text = "Port:";
 
-            this.edtSmtpPort.Location = new System.Drawing.Point(420, 13);
+            this.edtSmtpPort.Location = new System.Drawing.Point(420, 21);
             this.edtSmtpPort.Name = "edtSmtpPort";
             this.edtSmtpPort.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.edtSmtpPort.Properties.Appearance.Options.UseFont = true;
@@ -517,7 +508,7 @@ namespace RichEditSendMail {
 
             this.lblSmtpPassword.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblSmtpPassword.Appearance.Options.UseFont = true;
-            this.lblSmtpPassword.Location = new System.Drawing.Point(510, 17);
+            this.lblSmtpPassword.Location = new System.Drawing.Point(510, 25);
             this.lblSmtpPassword.Name = "lblSmtpPassword";
             this.lblSmtpPassword.Size = new System.Drawing.Size(95, 15);
             this.lblSmtpPassword.TabIndex = 0;
@@ -525,7 +516,7 @@ namespace RichEditSendMail {
 
             this.edtSmtpPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.edtSmtpPassword.Location = new System.Drawing.Point(615, 13);
+            this.edtSmtpPassword.Location = new System.Drawing.Point(615, 21);
             this.edtSmtpPassword.Name = "edtSmtpPassword";
             this.edtSmtpPassword.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.edtSmtpPassword.Properties.Appearance.Options.UseFont = true;
@@ -557,7 +548,6 @@ namespace RichEditSendMail {
             this.toolbarPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cboFont.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboSize.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorFont.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupAttachments)).EndInit();
             this.groupAttachments.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.edtFrom.Properties)).EndInit();
@@ -588,7 +578,7 @@ namespace RichEditSendMail {
         private DevExpress.XtraEditors.SimpleButton btnStrike;
         private DevExpress.XtraEditors.ComboBoxEdit cboFont;
         private DevExpress.XtraEditors.ComboBoxEdit cboSize;
-        private DevExpress.XtraEditors.ColorPickEdit colorFont;
+        private DevExpress.XtraEditors.SimpleButton btnFontColor;
         private DevExpress.XtraEditors.SimpleButton btnAlignLeft;
         private DevExpress.XtraEditors.SimpleButton btnAlignCenter;
         private DevExpress.XtraEditors.SimpleButton btnAlignRight;
