@@ -76,6 +76,37 @@ namespace RichEditSendMail {
 
             edtTo.Properties.CustomDrawTokenBackground += TokenBackground_CustomDraw;
             edtCc.Properties.CustomDrawTokenBackground += TokenBackground_CustomDraw;
+
+            edtTo.ValidateToken += AcceptAnyToken;
+            edtCc.ValidateToken += AcceptAnyToken;
+        }
+
+        private void AcceptAnyToken(object sender, DevExpress.XtraEditors.TokenEditValidateTokenEventArgs e)
+        {
+            var edit = sender as DevExpress.XtraEditors.TokenEdit;
+            string text = e.Description;
+
+            if (IsValidEmail(text))
+            {
+                e.IsValid = true;
+                if (edit != null) edit.ErrorText = string.Empty;
+            }
+            else
+            {
+                e.IsValid = false;
+                if (edit != null) edit.ErrorText = "Ungültige E-Mail-Adresse";
+            }
+        }
+
+        private static bool IsValidEmail(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text)) return false;
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(text.Trim());
+                return addr.Address.Equals(text.Trim(), StringComparison.OrdinalIgnoreCase);
+            }
+            catch { return false; }
         }
 
         private void TokenBackground_CustomDraw(object sender, DevExpress.XtraEditors.TokenEditCustomDrawTokenBackgroundEventArgs e)
@@ -590,13 +621,15 @@ namespace RichEditSendMail {
             string smtpServer = (edtSmtpServer.Text ?? string.Empty).Trim();
             string smtpPortText = (edtSmtpPort.Text ?? string.Empty).Trim();
             string smtpPassword = edtSmtpPassword.Text ?? string.Empty;
+            string toRaw = edtTo.EditValue == null ? string.Empty : edtTo.EditValue.ToString();
+            string ccRaw = edtCc.EditValue == null ? string.Empty : edtCc.EditValue.ToString();
 
             if (string.IsNullOrEmpty(fromAddress))
             {
                 XtraMessageBox.Show("Bitte deine Absender-Adresse im Feld 'Von' eintragen.");
                 return;
             }
-            if (edtTo.Text.Trim().Length == 0)
+            if (string.IsNullOrWhiteSpace(toRaw))
             {
                 XtraMessageBox.Show("Bitte mindestens einen Empfänger im Feld 'An' eintragen.");
                 return;
@@ -627,9 +660,9 @@ namespace RichEditSendMail {
                 using (var mailMessage = new MailMessage())
                 {
                     mailMessage.From = new MailAddress(fromAddress);
-                    foreach (var addr in SplitAddresses(edtTo.Text))
+                    foreach (var addr in SplitAddresses(toRaw))
                         mailMessage.To.Add(addr);
-                    foreach (var addr in SplitAddresses(edtCc.Text))
+                    foreach (var addr in SplitAddresses(ccRaw))
                         mailMessage.CC.Add(addr);
                     mailMessage.Subject = edtSubject.Text;
 
