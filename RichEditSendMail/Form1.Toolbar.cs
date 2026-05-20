@@ -8,7 +8,7 @@ namespace RichEditSendMail
     {
         private void AddToolbarSeparators()
         {
-            int[] positions = { 151, 365, 423, 601, 695 };
+            int[] positions = { 151, 365, 411, 489, 567, 645, 723, 771, 951, 1047 };
             foreach (int x in positions)
             {
                 var sep = new PanelControl

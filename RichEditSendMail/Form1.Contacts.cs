@@ -31,13 +31,16 @@ namespace RichEditSendMail
             {
                 edtTo.Properties.Tokens.Add(new DevExpress.XtraEditors.TokenEditToken(c, c));
                 edtCc.Properties.Tokens.Add(new DevExpress.XtraEditors.TokenEditToken(c, c));
+                edtBcc.Properties.Tokens.Add(new DevExpress.XtraEditors.TokenEditToken(c, c));
             }
 
             edtTo.Properties.CustomDrawTokenBackground += TokenBackground_CustomDraw;
             edtCc.Properties.CustomDrawTokenBackground += TokenBackground_CustomDraw;
+            edtBcc.Properties.CustomDrawTokenBackground += TokenBackground_CustomDraw;
 
             edtTo.ValidateToken += AcceptAnyToken;
             edtCc.ValidateToken += AcceptAnyToken;
+            edtBcc.ValidateToken += AcceptAnyToken;
         }
 
         private void AcceptAnyToken(object sender, DevExpress.XtraEditors.TokenEditValidateTokenEventArgs e)

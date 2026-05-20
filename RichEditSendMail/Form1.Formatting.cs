@@ -233,5 +233,67 @@ namespace RichEditSendMail
                 XtraMessageBox.Show("Nummerierung fehlgeschlagen: " + ex.Message);
             }
         }
+
+        // -------------------------------------------------------------
+        // Erweiterte Toolbar-Befehle
+        // -------------------------------------------------------------
+
+        private void RunCommand(Action command)
+        {
+            try
+            {
+                command();
+                richEdit.Focus();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Befehl fehlgeschlagen: " + ex.Message);
+            }
+        }
+
+        private void btnUndo_Click(object sender, EventArgs e)
+        {
+            RunCommand(() => new DevExpress.XtraRichEdit.Commands.UndoCommand(richEdit).Execute());
+        }
+
+        private void btnRedo_Click(object sender, EventArgs e)
+        {
+            RunCommand(() => new DevExpress.XtraRichEdit.Commands.RedoCommand(richEdit).Execute());
+        }
+
+        private void btnIncreaseFont_Click(object sender, EventArgs e)
+        {
+            RunCommand(() => new DevExpress.XtraRichEdit.Commands.IncreaseFontSizeCommand(richEdit).Execute());
+        }
+
+        private void btnDecreaseFont_Click(object sender, EventArgs e)
+        {
+            RunCommand(() => new DevExpress.XtraRichEdit.Commands.DecreaseFontSizeCommand(richEdit).Execute());
+        }
+
+        private void btnSuperscript_Click(object sender, EventArgs e)
+        {
+            RunCommand(() => new DevExpress.XtraRichEdit.Commands.ToggleFontSuperscriptCommand(richEdit).Execute());
+        }
+
+        private void btnSubscript_Click(object sender, EventArgs e)
+        {
+            RunCommand(() => new DevExpress.XtraRichEdit.Commands.ToggleFontSubscriptCommand(richEdit).Execute());
+        }
+
+        private void btnIncrementIndent_Click(object sender, EventArgs e)
+        {
+            RunCommand(() => new DevExpress.XtraRichEdit.Commands.IncrementIndentCommand(richEdit).Execute());
+        }
+
+        private void btnDecrementIndent_Click(object sender, EventArgs e)
+        {
+            RunCommand(() => new DevExpress.XtraRichEdit.Commands.DecrementIndentCommand(richEdit).Execute());
+        }
+
+        private void btnClearFormat_Click(object sender, EventArgs e)
+        {
+            RunCommand(() => new DevExpress.XtraRichEdit.Commands.ClearFormattingCommand(richEdit).Execute());
+        }
     }
 }

@@ -23,6 +23,7 @@ namespace RichEditSendMail
             AddToolbarSeparators();
             InitializeAttachmentsPlaceholder();
             InitializeAttachmentDragDrop();
+            LoadSettings();
         }
     }
 }

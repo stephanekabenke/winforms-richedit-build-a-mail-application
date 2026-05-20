@@ -37,6 +37,15 @@ namespace RichEditSendMail {
             this.btnNumberedList = new DevExpress.XtraEditors.SimpleButton();
             this.btnPicture = new DevExpress.XtraEditors.SimpleButton();
             this.btnHyperlink = new DevExpress.XtraEditors.SimpleButton();
+            this.btnUndo = new DevExpress.XtraEditors.SimpleButton();
+            this.btnRedo = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDecreaseFont = new DevExpress.XtraEditors.SimpleButton();
+            this.btnIncreaseFont = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSuperscript = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSubscript = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDecrementIndent = new DevExpress.XtraEditors.SimpleButton();
+            this.btnIncrementIndent = new DevExpress.XtraEditors.SimpleButton();
+            this.btnClearFormat = new DevExpress.XtraEditors.SimpleButton();
 
             // Anhang-Bereich
             this.groupAttachments = new DevExpress.XtraEditors.GroupControl();
@@ -55,6 +64,7 @@ namespace RichEditSendMail {
             this.edtSmtpPort = new DevExpress.XtraEditors.TextEdit();
             this.lblSmtpPassword = new DevExpress.XtraEditors.LabelControl();
             this.edtSmtpPassword = new DevExpress.XtraEditors.TextEdit();
+            this.btnSignature = new DevExpress.XtraEditors.SimpleButton();
             this.btnSend = new DevExpress.XtraEditors.SimpleButton();
             this.lblFrom = new DevExpress.XtraEditors.LabelControl();
             this.edtFrom = new DevExpress.XtraEditors.TextEdit();
@@ -62,6 +72,8 @@ namespace RichEditSendMail {
             this.edtTo = new DevExpress.XtraEditors.TokenEdit();
             this.lblCc = new DevExpress.XtraEditors.LabelControl();
             this.edtCc = new DevExpress.XtraEditors.TokenEdit();
+            this.lblBcc = new DevExpress.XtraEditors.LabelControl();
+            this.edtBcc = new DevExpress.XtraEditors.TokenEdit();
             this.lblSubject = new DevExpress.XtraEditors.LabelControl();
             this.edtSubject = new DevExpress.XtraEditors.TextEdit();
 
@@ -83,6 +95,7 @@ namespace RichEditSendMail {
             ((System.ComponentModel.ISupportInitialize)(this.edtFrom.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtTo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtCc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtBcc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtSubject.Properties)).BeginInit();
             this.SuspendLayout();
 
@@ -115,6 +128,15 @@ namespace RichEditSendMail {
             this.toolbarPanel.Controls.Add(this.btnPicture);
             this.toolbarPanel.Controls.Add(this.btnHyperlink);
             this.toolbarPanel.Controls.Add(this.btnAddAttachment);
+            this.toolbarPanel.Controls.Add(this.btnUndo);
+            this.toolbarPanel.Controls.Add(this.btnRedo);
+            this.toolbarPanel.Controls.Add(this.btnDecreaseFont);
+            this.toolbarPanel.Controls.Add(this.btnIncreaseFont);
+            this.toolbarPanel.Controls.Add(this.btnSuperscript);
+            this.toolbarPanel.Controls.Add(this.btnSubscript);
+            this.toolbarPanel.Controls.Add(this.btnDecrementIndent);
+            this.toolbarPanel.Controls.Add(this.btnIncrementIndent);
+            this.toolbarPanel.Controls.Add(this.btnClearFormat);
             this.toolbarPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.toolbarPanel.Location = new System.Drawing.Point(0, 0);
             this.toolbarPanel.Name = "toolbarPanel";
@@ -208,7 +230,7 @@ namespace RichEditSendMail {
             this.btnAlignLeft.AllowFocus = false;
             this.btnAlignLeft.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnAlignLeft.Appearance.Options.UseFont = true;
-            this.btnAlignLeft.Location = new System.Drawing.Point(429, 9);
+            this.btnAlignLeft.Location = new System.Drawing.Point(779, 9);
             this.btnAlignLeft.Name = "btnAlignLeft";
             this.btnAlignLeft.Size = new System.Drawing.Size(38, 30);
             this.btnAlignLeft.TabIndex = 7;
@@ -219,7 +241,7 @@ namespace RichEditSendMail {
             this.btnAlignCenter.AllowFocus = false;
             this.btnAlignCenter.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnAlignCenter.Appearance.Options.UseFont = true;
-            this.btnAlignCenter.Location = new System.Drawing.Point(471, 9);
+            this.btnAlignCenter.Location = new System.Drawing.Point(821, 9);
             this.btnAlignCenter.Name = "btnAlignCenter";
             this.btnAlignCenter.Size = new System.Drawing.Size(38, 30);
             this.btnAlignCenter.TabIndex = 8;
@@ -230,7 +252,7 @@ namespace RichEditSendMail {
             this.btnAlignRight.AllowFocus = false;
             this.btnAlignRight.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnAlignRight.Appearance.Options.UseFont = true;
-            this.btnAlignRight.Location = new System.Drawing.Point(513, 9);
+            this.btnAlignRight.Location = new System.Drawing.Point(863, 9);
             this.btnAlignRight.Name = "btnAlignRight";
             this.btnAlignRight.Size = new System.Drawing.Size(38, 30);
             this.btnAlignRight.TabIndex = 9;
@@ -241,7 +263,7 @@ namespace RichEditSendMail {
             this.btnAlignJustify.AllowFocus = false;
             this.btnAlignJustify.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnAlignJustify.Appearance.Options.UseFont = true;
-            this.btnAlignJustify.Location = new System.Drawing.Point(555, 9);
+            this.btnAlignJustify.Location = new System.Drawing.Point(905, 9);
             this.btnAlignJustify.Name = "btnAlignJustify";
             this.btnAlignJustify.Size = new System.Drawing.Size(38, 30);
             this.btnAlignJustify.TabIndex = 10;
@@ -253,7 +275,7 @@ namespace RichEditSendMail {
             this.btnBulletList.AllowFocus = false;
             this.btnBulletList.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnBulletList.Appearance.Options.UseFont = true;
-            this.btnBulletList.Location = new System.Drawing.Point(607, 9);
+            this.btnBulletList.Location = new System.Drawing.Point(959, 9);
             this.btnBulletList.Name = "btnBulletList";
             this.btnBulletList.Size = new System.Drawing.Size(38, 30);
             this.btnBulletList.TabIndex = 11;
@@ -264,7 +286,7 @@ namespace RichEditSendMail {
             this.btnNumberedList.AllowFocus = false;
             this.btnNumberedList.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnNumberedList.Appearance.Options.UseFont = true;
-            this.btnNumberedList.Location = new System.Drawing.Point(649, 9);
+            this.btnNumberedList.Location = new System.Drawing.Point(1001, 9);
             this.btnNumberedList.Name = "btnNumberedList";
             this.btnNumberedList.Size = new System.Drawing.Size(38, 30);
             this.btnNumberedList.TabIndex = 12;
@@ -276,7 +298,7 @@ namespace RichEditSendMail {
             this.btnPicture.AllowFocus = false;
             this.btnPicture.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnPicture.Appearance.Options.UseFont = true;
-            this.btnPicture.Location = new System.Drawing.Point(701, 9);
+            this.btnPicture.Location = new System.Drawing.Point(1055, 9);
             this.btnPicture.Name = "btnPicture";
             this.btnPicture.Size = new System.Drawing.Size(44, 30);
             this.btnPicture.TabIndex = 13;
@@ -287,7 +309,7 @@ namespace RichEditSendMail {
             this.btnHyperlink.AllowFocus = false;
             this.btnHyperlink.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnHyperlink.Appearance.Options.UseFont = true;
-            this.btnHyperlink.Location = new System.Drawing.Point(749, 9);
+            this.btnHyperlink.Location = new System.Drawing.Point(1103, 9);
             this.btnHyperlink.Name = "btnHyperlink";
             this.btnHyperlink.Size = new System.Drawing.Size(44, 30);
             this.btnHyperlink.TabIndex = 14;
@@ -299,13 +321,86 @@ namespace RichEditSendMail {
             this.btnAddAttachment.AllowFocus = false;
             this.btnAddAttachment.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnAddAttachment.Appearance.Options.UseFont = true;
-            this.btnAddAttachment.Location = new System.Drawing.Point(797, 9);
+            this.btnAddAttachment.Location = new System.Drawing.Point(1151, 9);
             this.btnAddAttachment.Name = "btnAddAttachment";
             this.btnAddAttachment.Size = new System.Drawing.Size(44, 30);
             this.btnAddAttachment.TabIndex = 15;
             this.btnAddAttachment.Text = "";
             this.btnAddAttachment.ToolTip = "Anhang hinzufügen";
             this.btnAddAttachment.Click += new System.EventHandler(this.btnAddAttachment_Click);
+
+            // -- Erweiterte Befehle (rechts in der Toolbar) --
+            this.btnUndo.AllowFocus = false;
+            this.btnUndo.Location = new System.Drawing.Point(419, 9);
+            this.btnUndo.Name = "btnUndo";
+            this.btnUndo.Size = new System.Drawing.Size(32, 30);
+            this.btnUndo.TabIndex = 16;
+            this.btnUndo.ToolTip = "Rückgängig";
+            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
+
+            this.btnRedo.AllowFocus = false;
+            this.btnRedo.Location = new System.Drawing.Point(453, 9);
+            this.btnRedo.Name = "btnRedo";
+            this.btnRedo.Size = new System.Drawing.Size(32, 30);
+            this.btnRedo.TabIndex = 17;
+            this.btnRedo.ToolTip = "Wiederholen";
+            this.btnRedo.Click += new System.EventHandler(this.btnRedo_Click);
+
+            this.btnDecreaseFont.AllowFocus = false;
+            this.btnDecreaseFont.Location = new System.Drawing.Point(497, 9);
+            this.btnDecreaseFont.Name = "btnDecreaseFont";
+            this.btnDecreaseFont.Size = new System.Drawing.Size(32, 30);
+            this.btnDecreaseFont.TabIndex = 18;
+            this.btnDecreaseFont.ToolTip = "Schrift verkleinern";
+            this.btnDecreaseFont.Click += new System.EventHandler(this.btnDecreaseFont_Click);
+
+            this.btnIncreaseFont.AllowFocus = false;
+            this.btnIncreaseFont.Location = new System.Drawing.Point(531, 9);
+            this.btnIncreaseFont.Name = "btnIncreaseFont";
+            this.btnIncreaseFont.Size = new System.Drawing.Size(32, 30);
+            this.btnIncreaseFont.TabIndex = 19;
+            this.btnIncreaseFont.ToolTip = "Schrift vergrößern";
+            this.btnIncreaseFont.Click += new System.EventHandler(this.btnIncreaseFont_Click);
+
+            this.btnSuperscript.AllowFocus = false;
+            this.btnSuperscript.Location = new System.Drawing.Point(575, 9);
+            this.btnSuperscript.Name = "btnSuperscript";
+            this.btnSuperscript.Size = new System.Drawing.Size(32, 30);
+            this.btnSuperscript.TabIndex = 20;
+            this.btnSuperscript.ToolTip = "Hochgestellt";
+            this.btnSuperscript.Click += new System.EventHandler(this.btnSuperscript_Click);
+
+            this.btnSubscript.AllowFocus = false;
+            this.btnSubscript.Location = new System.Drawing.Point(609, 9);
+            this.btnSubscript.Name = "btnSubscript";
+            this.btnSubscript.Size = new System.Drawing.Size(32, 30);
+            this.btnSubscript.TabIndex = 21;
+            this.btnSubscript.ToolTip = "Tiefgestellt";
+            this.btnSubscript.Click += new System.EventHandler(this.btnSubscript_Click);
+
+            this.btnDecrementIndent.AllowFocus = false;
+            this.btnDecrementIndent.Location = new System.Drawing.Point(653, 9);
+            this.btnDecrementIndent.Name = "btnDecrementIndent";
+            this.btnDecrementIndent.Size = new System.Drawing.Size(32, 30);
+            this.btnDecrementIndent.TabIndex = 22;
+            this.btnDecrementIndent.ToolTip = "Einzug verkleinern";
+            this.btnDecrementIndent.Click += new System.EventHandler(this.btnDecrementIndent_Click);
+
+            this.btnIncrementIndent.AllowFocus = false;
+            this.btnIncrementIndent.Location = new System.Drawing.Point(687, 9);
+            this.btnIncrementIndent.Name = "btnIncrementIndent";
+            this.btnIncrementIndent.Size = new System.Drawing.Size(32, 30);
+            this.btnIncrementIndent.TabIndex = 23;
+            this.btnIncrementIndent.ToolTip = "Einzug vergrößern";
+            this.btnIncrementIndent.Click += new System.EventHandler(this.btnIncrementIndent_Click);
+
+            this.btnClearFormat.AllowFocus = false;
+            this.btnClearFormat.Location = new System.Drawing.Point(731, 9);
+            this.btnClearFormat.Name = "btnClearFormat";
+            this.btnClearFormat.Size = new System.Drawing.Size(32, 30);
+            this.btnClearFormat.TabIndex = 24;
+            this.btnClearFormat.ToolTip = "Formatierung löschen";
+            this.btnClearFormat.Click += new System.EventHandler(this.btnClearFormat_Click);
 
             //
             // ========== ANHÄNGE (Yahoo-Style Tiles, unten) ==========
@@ -344,13 +439,15 @@ namespace RichEditSendMail {
             this.panelControl1.Controls.Add(this.edtTo);
             this.panelControl1.Controls.Add(this.lblCc);
             this.panelControl1.Controls.Add(this.edtCc);
+            this.panelControl1.Controls.Add(this.lblBcc);
+            this.panelControl1.Controls.Add(this.edtBcc);
             this.panelControl1.Controls.Add(this.lblSubject);
             this.panelControl1.Controls.Add(this.edtSubject);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 670);
             this.panelControl1.Controls.Add(this.bottomSeparator);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1200, 230);
+            this.panelControl1.Size = new System.Drawing.Size(1200, 286);
             this.panelControl1.TabIndex = 3;
 
             // Trennlinie unter dem Mail-Header
@@ -441,10 +538,33 @@ namespace RichEditSendMail {
             this.edtCc.Size = new System.Drawing.Size(920, 44);
             this.edtCc.TabIndex = 2;
 
+            // BCC (Chips/Token + Dropdown)
+            this.lblBcc.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblBcc.Appearance.Options.UseFont = true;
+            this.lblBcc.Location = new System.Drawing.Point(20, 178);
+            this.lblBcc.Name = "lblBcc";
+            this.lblBcc.Size = new System.Drawing.Size(30, 17);
+            this.lblBcc.TabIndex = 0;
+            this.lblBcc.Text = "BCC:";
+
+            this.edtBcc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.edtBcc.Location = new System.Drawing.Point(95, 174);
+            this.edtBcc.Name = "edtBcc";
+            this.edtBcc.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.edtBcc.Properties.Appearance.Options.UseFont = true;
+            this.edtBcc.Properties.EditMode = DevExpress.XtraEditors.TokenEditMode.Manual;
+            this.edtBcc.Properties.TokenGlyphLocation = DevExpress.XtraEditors.TokenEditGlyphLocation.Right;
+            this.edtBcc.Properties.AutoHeight = false;
+            this.edtBcc.Properties.MaxExpandLines = 1;
+            this.edtBcc.Properties.DropDownRowCount = 8;
+            this.edtBcc.Size = new System.Drawing.Size(920, 44);
+            this.edtBcc.TabIndex = 3;
+
             // Betreff
             this.lblSubject.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblSubject.Appearance.Options.UseFont = true;
-            this.lblSubject.Location = new System.Drawing.Point(20, 176);
+            this.lblSubject.Location = new System.Drawing.Point(20, 232);
             this.lblSubject.Name = "lblSubject";
             this.lblSubject.Size = new System.Drawing.Size(47, 17);
             this.lblSubject.TabIndex = 0;
@@ -452,13 +572,13 @@ namespace RichEditSendMail {
 
             this.edtSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.edtSubject.Location = new System.Drawing.Point(95, 172);
+            this.edtSubject.Location = new System.Drawing.Point(95, 228);
             this.edtSubject.Name = "edtSubject";
             this.edtSubject.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.edtSubject.Properties.Appearance.Options.UseFont = true;
             this.edtSubject.Properties.NullValuePrompt = "Betreff";
             this.edtSubject.Size = new System.Drawing.Size(920, 38);
-            this.edtSubject.TabIndex = 3;
+            this.edtSubject.TabIndex = 4;
 
             //
             // ========== SMTP FOOTER ==========
@@ -469,6 +589,7 @@ namespace RichEditSendMail {
             this.smtpFooter.Controls.Add(this.edtSmtpPort);
             this.smtpFooter.Controls.Add(this.lblSmtpPassword);
             this.smtpFooter.Controls.Add(this.edtSmtpPassword);
+            this.smtpFooter.Controls.Add(this.btnSignature);
             this.smtpFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.smtpFooter.Name = "smtpFooter";
             this.smtpFooter.Size = new System.Drawing.Size(1200, 64);
@@ -523,8 +644,20 @@ namespace RichEditSendMail {
             this.edtSmtpPassword.Properties.NullValuePrompt = "App-Passwort eingeben";
             this.edtSmtpPassword.Properties.PasswordChar = '●';
             this.edtSmtpPassword.Properties.UseSystemPasswordChar = false;
-            this.edtSmtpPassword.Size = new System.Drawing.Size(560, 22);
+            this.edtSmtpPassword.Size = new System.Drawing.Size(460, 22);
             this.edtSmtpPassword.TabIndex = 3;
+
+            this.btnSignature.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSignature.AllowFocus = false;
+            this.btnSignature.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnSignature.Appearance.Options.UseFont = true;
+            this.btnSignature.Location = new System.Drawing.Point(1085, 18);
+            this.btnSignature.Name = "btnSignature";
+            this.btnSignature.Size = new System.Drawing.Size(95, 28);
+            this.btnSignature.TabIndex = 4;
+            this.btnSignature.Text = "Signatur";
+            this.btnSignature.ToolTip = "Signatur bearbeiten";
+            this.btnSignature.Click += new System.EventHandler(this.btnSignature_Click);
 
             //
             // Form1
@@ -553,6 +686,7 @@ namespace RichEditSendMail {
             ((System.ComponentModel.ISupportInitialize)(this.edtFrom.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtTo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtCc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtBcc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtSubject.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bottomSeparator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sepBelowAttachments)).EndInit();
@@ -587,6 +721,15 @@ namespace RichEditSendMail {
         private DevExpress.XtraEditors.SimpleButton btnNumberedList;
         private DevExpress.XtraEditors.SimpleButton btnPicture;
         private DevExpress.XtraEditors.SimpleButton btnHyperlink;
+        private DevExpress.XtraEditors.SimpleButton btnUndo;
+        private DevExpress.XtraEditors.SimpleButton btnRedo;
+        private DevExpress.XtraEditors.SimpleButton btnDecreaseFont;
+        private DevExpress.XtraEditors.SimpleButton btnIncreaseFont;
+        private DevExpress.XtraEditors.SimpleButton btnSuperscript;
+        private DevExpress.XtraEditors.SimpleButton btnSubscript;
+        private DevExpress.XtraEditors.SimpleButton btnDecrementIndent;
+        private DevExpress.XtraEditors.SimpleButton btnIncrementIndent;
+        private DevExpress.XtraEditors.SimpleButton btnClearFormat;
 
         // Anhänge
         private DevExpress.XtraEditors.GroupControl groupAttachments;
@@ -613,6 +756,9 @@ namespace RichEditSendMail {
         private DevExpress.XtraEditors.TokenEdit edtTo;
         private DevExpress.XtraEditors.LabelControl lblCc;
         private DevExpress.XtraEditors.TokenEdit edtCc;
+        private DevExpress.XtraEditors.LabelControl lblBcc;
+        private DevExpress.XtraEditors.TokenEdit edtBcc;
+        private DevExpress.XtraEditors.SimpleButton btnSignature;
         private DevExpress.XtraEditors.LabelControl lblSubject;
         private DevExpress.XtraEditors.TextEdit edtSubject;
     }

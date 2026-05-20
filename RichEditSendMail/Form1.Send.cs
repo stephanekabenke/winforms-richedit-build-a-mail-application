@@ -5,13 +5,14 @@ using System.Net;
 using System.Net.Mail;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using DevExpress.XtraRichEdit.API.Native;
 
 namespace RichEditSendMail
 {
     // Validierung der Eingaben und Versand der Mail per SMTP.
     public partial class Form1
     {
-        private void btnSend_Click(object sender, EventArgs e)
+        private async void btnSend_Click(object sender, EventArgs e)
         {
             string fromAddress = (edtFrom.Text ?? string.Empty).Trim();
             string smtpServer = (edtSmtpServer.Text ?? string.Empty).Trim();
@@ -19,6 +20,7 @@ namespace RichEditSendMail
             string smtpPassword = edtSmtpPassword.Text ?? string.Empty;
             string toRaw = edtTo.EditValue == null ? string.Empty : edtTo.EditValue.ToString();
             string ccRaw = edtCc.EditValue == null ? string.Empty : edtCc.EditValue.ToString();
+            string bccRaw = edtBcc.EditValue == null ? string.Empty : edtBcc.EditValue.ToString();
 
             if (string.IsNullOrEmpty(fromAddress))
             {
@@ -51,6 +53,9 @@ namespace RichEditSendMail
                 return;
             }
 
+            btnSend.Enabled = false;
+            string sendButtonText = btnSend.Text;
+            btnSend.Text = "Senden...";
             try
             {
                 using (var mailMessage = new MailMessage())
@@ -60,10 +65,27 @@ namespace RichEditSendMail
                         mailMessage.To.Add(addr);
                     foreach (var addr in SplitAddresses(ccRaw))
                         mailMessage.CC.Add(addr);
+                    foreach (var addr in SplitAddresses(bccRaw))
+                        mailMessage.Bcc.Add(addr);
                     mailMessage.Subject = edtSubject.Text;
+
+                    // Signatur nur fuer den Versand temporaer ans Ende anhaengen.
+                    var doc = richEdit.Document;
+                    DocumentRange signatureRange = null;
+                    if (!string.IsNullOrEmpty(_settings.Signature))
+                    {
+                        int posBefore = doc.Range.End.ToInt();
+                        doc.AppendText("\r\n" + _settings.Signature);
+                        int posAfter = doc.Range.End.ToInt();
+                        if (posAfter > posBefore)
+                            signatureRange = doc.CreateRange(posBefore, posAfter - posBefore);
+                    }
 
                     var exporter = new RichEditMailMessageExporter(richEdit, mailMessage);
                     exporter.Export();
+
+                    if (signatureRange != null)
+                        doc.Delete(signatureRange);
 
                     foreach (var path in _attachmentPaths)
                     {
@@ -77,15 +99,21 @@ namespace RichEditSendMail
                     {
                         client.EnableSsl = true;
                         client.Credentials = new NetworkCredential(fromAddress, smtpPassword);
-                        client.Send(mailMessage);
+                        await client.SendMailAsync(mailMessage);
                     }
 
+                    SaveSettings();
                     XtraMessageBox.Show("Mail gesendet.", "Mail Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception exc)
             {
                 XtraMessageBox.Show("Senden fehlgeschlagen: " + exc.Message);
+            }
+            finally
+            {
+                btnSend.Text = sendButtonText;
+                btnSend.Enabled = true;
             }
         }
 
